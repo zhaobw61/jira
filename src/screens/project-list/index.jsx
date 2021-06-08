@@ -21,6 +21,14 @@ export  const ProjectListScreen = () => {
         })
     }, [param])
 
+    useEffect(() => {
+        fetch(`${apiUrl}/users`).then(async response => {
+            if(response.ok) {
+                setUser(await response.json())
+            }
+        })
+    }, [])
+
     return <div>
         <SearchPanel users={users} param={param} serParam={serParam}/>
         <List users={users} list={list}/>
