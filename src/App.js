@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import {ProjectListScreen} from './screens/project-list';
 
 function App() {

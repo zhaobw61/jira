@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import {SearchPanel} from './search-panel';
 import {List} from './list';
 import {cleanObject} from '../utils/index'
@@ -9,7 +9,7 @@ const apiUrl = process.env.REACT_APP_API_URL
 
 export  const ProjectListScreen = () => {
     const [users, setUser] = useState([])
-    const [param, serParam] = useState({
+    const [param, setParam] = useState({
         name: '',
         personId: '',
     })
@@ -32,7 +32,7 @@ export  const ProjectListScreen = () => {
     }, [])
 
     return <div>
-        <SearchPanel users={users} param={param} serParam={serParam}/>
+        <SearchPanel users={users} param={param} setParam={setParam}/>
         <List users={users} list={list}/>
     </div>
 }

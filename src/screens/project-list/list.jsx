@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 export const List = ({users, list}) => {
     return <table>
         <thead>
@@ -10,7 +10,7 @@ export const List = ({users, list}) => {
         <tbody>
             {
                 list.map(project => {
-                    return <tr key={project.personId}>
+                    return <tr key={project.personId + Math.random()}>
                         <td>{project.name}</td>
                         <td>{users.find(user => user.id === project.personId)?.name || '未知'}</td>
                     </tr>

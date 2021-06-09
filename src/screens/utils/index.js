@@ -3,7 +3,7 @@ export const  cleanObject = (object) => {
     const result = {...object}
     Object.keys(result).forEach(key => {
         const value = result[key];
-        if(isFalsy(0)) {
+        if(isFalsy(value)) {
             delete result[key]
         }
     })
