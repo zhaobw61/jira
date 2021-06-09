@@ -1,4 +1,5 @@
 import React from "react";
+import {cleanObject} from '../utils/index';
 export const List = ({users, list}) => {
     return <table>
         <thead>

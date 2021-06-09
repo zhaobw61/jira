@@ -1,7 +1,7 @@
 import React from "react";
 import {SearchPanel} from './search-panel';
 import {List} from './list';
-import {cleanObject} from '../utils/index'
+import {cleanObject, useDebounce} from '../utils/index'
 import { useState, useEffect } from "react";
 import * as qs from 'qs';
 
@@ -13,7 +13,8 @@ export  const ProjectListScreen = () => {
         name: '',
         personId: '',
     })
-    const [list, setList] = useState([])
+    const debounceParam = useDebounce(param, 2000);
+    const [list, setList] = useState([]);
 
     useEffect(() => {
         fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(param))}`).then(async response => {
@@ -21,7 +22,7 @@ export  const ProjectListScreen = () => {
                 setList(await response.json())
             }
         })
-    }, [param])
+    }, [debounceParam])
 
     useEffect(() => {
         fetch(`${apiUrl}/users`).then(async response => {
