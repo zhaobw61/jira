@@ -1,6 +1,20 @@
 import React from "react";
-import {cleanObject} from '../utils/index';
-export const List = ({users, list}) => {
+import {User} from './search-panel'
+
+
+interface Project {
+    id: number;
+    name: string;
+    personId: number;
+    pin: boolean;
+    organization: string;
+    created: number;
+}
+interface ListProps {
+    list: Project[],
+    users: User[]
+}
+export const List = ({list, users}: ListProps) => {
     return <table>
         <thead>
             <tr>
@@ -11,7 +25,7 @@ export const List = ({users, list}) => {
         <tbody>
             {
                 list.map(project => {
-                    return <tr key={project.personId + Math.random()}>
+                    return <tr key={project.id}>
                         <td>{project.name}</td>
                         <td>{users.find(user => user.id === project.personId)?.name || '未知'}</td>
                     </tr>
