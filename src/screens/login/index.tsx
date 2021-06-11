@@ -17,8 +17,8 @@ export const LoginScreen = () => {
     }
     const handleSubmit = (event: FormEvent<Element>) => {
         event.preventDefault();
-        const username = (event.currentTarget.elements[0] as HTMLInputElement).value;
-        const password = (event.currentTarget.elements[1] as HTMLInputElement).value;
+        // const username = (event.currentTarget.elements[0] as HTMLInputElement).value;
+        // const password = (event.currentTarget.elements[1] as HTMLInputElement).value;
     }
     return <form onSubmit={handleSubmit}>
         <div>
