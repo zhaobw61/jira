@@ -13,6 +13,13 @@ export const  cleanObject = (object: object) => {
     return result;
 }
 
+export const useMount = (callback: () => void) => {
+    useEffect(() => {
+        callback();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+};
+
 export const useDebounce = (value: any, delay?: number) => {
     const [debounceValue, setDebounceValue] = useState(value);
     useEffect(() => {
