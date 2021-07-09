@@ -5,6 +5,7 @@ import {cleanObject, useDebounce} from '../../utils/index'
 import { useState, useEffect } from "react";
 import * as qs from 'qs';
 import { useHttp } from "../../utils/http";
+import styled from '@emotion/styled'
 
 const apiUrl = process.env.REACT_APP_API_URL
 
@@ -26,8 +27,14 @@ export  const ProjectListScreen = () => {
         client('users').then(setUser)
     }, [])
 
-    return <div>
+    return <ScreenContainer>
         <SearchPanel users={users} param={param} setParam={setParam}/>
         <List users={users} list={list}/>
-    </div>
+    </ScreenContainer>
 }
+
+export const ScreenContainer = styled.div`
+width: 100%;
+display: flex;
+flex-direction: column;
+`;
