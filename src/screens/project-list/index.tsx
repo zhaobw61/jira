@@ -27,14 +27,14 @@ export  const ProjectListScreen = () => {
         client('users').then(setUser)
     }, [])
 
-    return <ScreenContainer>
+    return <Container>
+        <h1>项目列表</h1>
         <SearchPanel users={users} param={param} setParam={setParam}/>
         <List users={users} list={list}/>
-    </ScreenContainer>
+    </Container>
 }
 
-export const ScreenContainer = styled.div`
+export const Container = styled.div`
 width: 100%;
-display: flex;
-flex-direction: column;
+padding: 3.2rem;
 `;
