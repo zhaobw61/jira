@@ -3,11 +3,8 @@ import {SearchPanel} from './search-panel';
 import {List} from './list';
 import {cleanObject, useDebounce} from '../../utils/index'
 import { useState, useEffect } from "react";
-import * as qs from 'qs';
 import { useHttp } from "../../utils/http";
 import styled from '@emotion/styled'
-
-const apiUrl = process.env.REACT_APP_API_URL
 
 export  const ProjectListScreen = () => {
     const [users, setUser] = useState([])
@@ -21,6 +18,7 @@ export  const ProjectListScreen = () => {
 
     useEffect(() => {
         client('projects', {data: cleanObject(param)}).then(setList)
+        // eslint-disable-next-line
     }, [debounceParam])
 
     useEffect(() => {

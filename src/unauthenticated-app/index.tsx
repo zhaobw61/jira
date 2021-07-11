@@ -13,12 +13,11 @@ export const UnauthenticatedApp = () => {
             <Header/>
             <Background/>
             <ShadowCard>
-                {
-                    isRegister ? <RegisterScreen/> : <LoginScreen/>
-                }
-                <a onClick={() => setIsRegister(!isRegister)}>
+                <Title>{isRegister ? "请注册" : '请登录'}</Title>
+                {isRegister ? <RegisterScreen /> : <LoginScreen />}
+                <Button type={"link"} onClick={() => setIsRegister(!isRegister)}>
                     切换到{isRegister ? '登录' : '注册'}
-                </a>
+                </Button>
             </ShadowCard>
         </Container>
     )

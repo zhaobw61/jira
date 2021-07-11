@@ -1,8 +1,7 @@
 import React from "react";
 import {User} from './search-panel'
 import {Table} from 'antd'
-import { ProjectListScreen } from ".";
-import dayjs from 'Dayjs'
+import dayjs from 'dayjs'
 
 
 interface Project {
