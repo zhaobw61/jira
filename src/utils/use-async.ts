@@ -1,3 +1,4 @@
+import { useState } from "react";
 interface State<D> {
     error: Error |  null;
     data: D | null;
@@ -24,7 +25,7 @@ export const useAsync = <D>(initialState?: State<D>) => {
 
     const setError = (data: D) => setState({
         data,
-        stat: 'erro',
+        stat: 'error',
         error: null
     })
     // run 用来触发异步请求
@@ -39,8 +40,18 @@ export const useAsync = <D>(initialState?: State<D>) => {
             return data
         })
         .catch(error => {
-            setEroor(error)
+            setError(error)
             return error
         })
+    }
+    return {
+        isIdle: state.stat === 'idle',
+        isLoading: state.stat === 'loading',
+        isError: state.stat === 'error',
+        isSuccess: state.stat === 'success',
+        run,
+        setData,
+        setError,
+        ...state
     }
 }
