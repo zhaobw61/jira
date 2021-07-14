@@ -31,3 +31,18 @@ export const useDebounce = (value: any, delay?: number) => {
     }, [value, delay]);
     return debounceValue;
 }
+
+export const useDocumentTitle = (title: string, keepOnUnmount: boolean = true) => {
+    const oldTitle = document.title;
+    useEffect(() => {
+        document.title = title
+    }, [title, oldTitle, keepOnUnmount])
+
+    useEffect(() => {
+        return () => {
+            if(!keepOnUnmount) {
+                document.title = oldTitle
+            }
+        }
+    }, [])
+}

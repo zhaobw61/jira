@@ -1,7 +1,7 @@
 import React from "react";
 import {SearchPanel} from './search-panel';
 import {List} from './list';
-import {cleanObject, useDebounce, useMount} from '../../utils/index'
+import {cleanObject, useDebounce, useDocumentTitle, useMount} from '../../utils/index'
 import { useState, useEffect } from "react";
 import { useHttp } from "../../utils/http";
 import styled from '@emotion/styled'
@@ -20,6 +20,7 @@ export  const ProjectListScreen = () => {
     const { isLoading, error, data: list } = useProjects(debounceParam);
     const { data:users } = useUsers()
 
+    useDocumentTitle('项目列表');
     return <Container>
         <h1>项目列表</h1>
         <SearchPanel users={users || []} param={param} setParam={setParam}/>
