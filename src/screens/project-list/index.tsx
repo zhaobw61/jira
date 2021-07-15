@@ -10,12 +10,15 @@ import { useAsync } from "../../utils/use-async";
 import { Project } from "../../types/project";
 import { useProjects } from "../../utils/project";
 import { useUsers } from "../../utils/user";
+import { useUrlQueryParam } from "../../utils/url";
 
 export  const ProjectListScreen = () => {
-    const [param, setParam] = useState({
+    const [, setParam] = useState({
         name: '',
         personId: '',
-    })
+    });
+    const [keys] = useState<('name'|'personId')[]>(['name', 'personId'])
+    const [param] = useUrlQueryParam(keys);
     const debounceParam = useDebounce(param, 200);
     const { isLoading, error, data: list } = useProjects(debounceParam);
     const { data:users } = useUsers()
