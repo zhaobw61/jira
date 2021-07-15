@@ -11,19 +11,15 @@ import { Project } from "../../types/project";
 import { useProjects } from "../../utils/project";
 import { useUsers } from "../../utils/user";
 import { useUrlQueryParam } from "../../utils/url";
+import { useProjectsSearchParams } from "./util";
 
 export  const ProjectListScreen = () => {
-    const [, setParam] = useState({
-        name: '',
-        personId: '',
-    });
-    const [keys] = useState<('name'|'personId')[]>(['name', 'personId'])
-    const [param] = useUrlQueryParam(keys);
-    const debounceParam = useDebounce(param, 200);
-    const { isLoading, error, data: list } = useProjects(debounceParam);
+    useDocumentTitle('项目列表', false);
+
+    const [param, setParam] = useProjectsSearchParams();
+    const { isLoading, error, data: list } = useProjects(useDebounce(param, 200));
     const { data:users } = useUsers()
 
-    useDocumentTitle('项目列表');
     return <Container>
         <h1>项目列表</h1>
         <SearchPanel users={users || []} param={param} setParam={setParam}/>

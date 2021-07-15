@@ -2,6 +2,8 @@
 import {jsx} from '@emotion/react'
 import React from "react";
 import { Input,Select, Form } from 'antd'
+import { Project } from '../../types/project';
+import { UserSelect } from '../../components/user-select'
 
 export interface User {
     id: number;
@@ -13,10 +15,7 @@ export interface User {
 }
 interface SearchPanelProps {
     users: User[], // 数组类型的声明
-    param: {
-        name: string;
-        personId: string;
-    },
+    param: Partial<Pick<Project, 'name' | 'personId'>>,
     setParam:(param: SearchPanelProps['param']) => void;
 }
 
@@ -31,21 +30,14 @@ export const SearchPanel = ({users, param, setParam}:SearchPanelProps) => {
             })}/>
         </Form.Item>
         <Form.Item>
-            <Select value={param.personId} onChange={value => {
-                    setParam({
-                        ...param,
-                        personId: value
-                    })
-                }}>
-                    <Select.Option value={""}>负责人</Select.Option>
-                    {
-                        users.map(user => (
-                            <Select.Option key={user.id} value={user.id}>
-                                {user.name}
-                            </Select.Option>
-                        ))
-                    }
-            </Select>
+            <UserSelect
+                defaultOptionName={'负责人'}
+                value={param.personId}
+                onChange={(value: number | undefined) =>
+                setParam({
+                    ...param,
+                    personId: value
+                })}/>
         </Form.Item>
     </Form>
 }
